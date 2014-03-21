@@ -15,6 +15,12 @@
 
 @implementation MASShortcut (UserDefaults)
 
++ (instancetype)shortcutWithUserDefaultsKey:(NSString *)userDefaultsKey
+{
+    NSData* shortcutData = [[NSUserDefaults standardUserDefaults] objectForKey:userDefaultsKey];
+    return [MASShortcut shortcutWithData:shortcutData];
+}
+
 + (NSMutableDictionary *)registeredUserDefaultsHotKeys
 {
     static NSMutableDictionary *shared = nil;
