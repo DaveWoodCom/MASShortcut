@@ -44,6 +44,20 @@ void UninstallEventHandler(void);
     }
 }
 
+- (BOOL)isRegistered
+{
+    __block BOOL isRegistered = NO;
+
+    [MASRegisteredHotKeys() enumerateKeysAndObjectsUsingBlock:^(id key, MASShortcutHotKey *hotKey, BOOL *stop) {
+        if ([hotKey.shortcut.description isEqualToString:self.description]) {
+            isRegistered = YES;
+            *stop = YES;
+        }
+    }];
+
+    return isRegistered;
+}
+
 @end
 
 #pragma mark -
